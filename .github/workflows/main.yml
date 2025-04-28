@@ -48,13 +48,6 @@ jobs:
           /usr/share/swift
         df -h /
 
-    - name: Clone source code
-      run: |
-        pwd
-        ls -a
-        df -hT $PWD
-        git clone $REPO_URL -b $REPO_BRANCH .
-
     - name: Cache
       uses: klever1988/cachewrtbuild@main
       with:
