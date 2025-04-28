@@ -48,12 +48,6 @@ jobs:
           /usr/share/swift
         df -h /
 
-    - name: Cache
-      uses: klever1988/cachewrtbuild@main
-      with:
-        ccache: 'true'
-        prefix: ${{ github.workspace }}
-
     - name: Space cleanup and Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
