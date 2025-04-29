@@ -18,6 +18,8 @@ jobs:
     steps:  
     - name: Checkout
       uses: actions/checkout@main
+      with:
+        filter: blob:none
 
     - name: Initialization environment
       run: |
