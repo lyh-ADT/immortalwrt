@@ -21,12 +21,12 @@ jobs:
       with:
         filter: blob:none
 
-    - name: Initialization environment
-      run: |
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
-        mv ./{.[!.],}** /workdir
-        ls -a
+          #    - name: Initialization environment
+          #      run: |
+          # sudo mkdir -p /workdir
+          # sudo chown $USER:$GROUPS /workdir
+          # mv ./{.[!.],}** /workdir
+          # ls -a
 
     # build
 
@@ -71,3 +71,5 @@ jobs:
       uses: mxschmitt/action-tmate@v3
       if: ${{ inputs.ssh }}
     
+    - name: make
+      run: make
