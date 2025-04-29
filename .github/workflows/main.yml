@@ -69,7 +69,7 @@ jobs:
     
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
-      if: ${{ inputs.ssh }}
+      if: ${{ inputs.ssh == 'true' }}
     
     - name: make
       run: make
