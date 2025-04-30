@@ -21,16 +21,16 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/lirc/Default
-    SECTION:=utils
-    CATEGORY:=Utilities
-    URL:=http://lirc.org/
+	SECTION:=utils
+	CATEGORY:=Utilities
+	URL:=http://lirc.org/
 endef
 
 define Package/lirc
-    $(call Package/lirc/Default)
-    TITLE:=LIRC - Linux Infrared Remote Control
-    MENU:=1
-    DEPENDS:=+libpthread
+	$(call Package/lirc/Default)
+	TITLE:=LIRC - Linux Infrared Remote Control
+	MENU:=1
+	DEPENDS:=+libpthread
 endef
 
 define Package/lirc/description
@@ -39,9 +39,9 @@ define Package/lirc/description
 endef
 
 define Package/lircdaemonadd
-    $(call Package/lirc/Default)
-    DEPENDS:=lirc
-    TITLE:=daemon additional files
+	$(call Package/lirc/Default)
+	DEPENDS:=lirc
+	TITLE:=daemon additional files
 endef
 
 define Package/lircdaemonadd/description
@@ -49,9 +49,9 @@ define Package/lircdaemonadd/description
 endef
 
 define  Package/lirctools
-    $(call Package/lirc/Default)
-    DEPENDS:=lirc
-    TITLE:=LIRC tools
+	$(call Package/lirc/Default)
+	DEPENDS:=lirc
+	TITLE:=LIRC tools
 endef
 
 define Package/lirctools/description
@@ -59,11 +59,11 @@ define Package/lirctools/description
 endef
 
 CONFIGURE_ARGS += \
-    --with-gnu-ld \
-    --with-pic \
-    --without-x \
-    --disable-nls \
-    --disable-static
+	--with-gnu-ld \
+	--with-pic \
+	--without-x \
+	--disable-nls \
+	--disable-static
 
 define Package/lirc/conffiles
 /etc/lirc/lircd.conf
@@ -74,31 +74,31 @@ define Package/lircdaemonadd/conffiles
 endef
 
 define Package/lirc/install
-    $(INSTALL_DIR) $(1)/usr/sbin/
-    $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lircd $(1)/usr/sbin/
-    $(INSTALL_DIR) $(1)/etc/lirc/
-    $(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/lirc/lircd.conf $(1)/etc/lirc/
-    $(INSTALL_DIR) $(1)/usr/lib/
-    $(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/liblirc.so.0 $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lircd $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/etc/lirc/
+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/lirc/lircd.conf $(1)/etc/lirc/
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/liblirc.so.0 $(1)/usr/lib/
 endef
 
 define Package/lircdaemonadd/install
-    $(INSTALL_DIR) $(1)/usr/sbin/
-    $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lircmd $(1)/usr/sbin/
-    $(INSTALL_DIR) $(1)/etc/lirc/    
-    $(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/lirc/lircmd.conf $(1)/etc/lirc/
+	$(INSTALL_DIR) $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lircmd $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/etc/lirc/    
+	$(INSTALL_CONF) $(PKG_INSTALL_DIR)/etc/lirc/lircmd.conf $(1)/etc/lirc/
 endef
 
 define Package/lirctools/install
-    $(INSTALL_DIR) $(1)/usr/sbin/
-    $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lirc-lsplugins $(1)/usr/sbin/
-    $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/lirc-lsremotes $(1)/usr/sbin/
-    $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/irrecord $(1)/usr/sbin/
-    $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/irsend $(1)/usr/sbin/
-    $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/irw $(1)/usr/sbin/
-    $(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/mode2 $(1)/usr/sbin/
-    $(INSTALL_DIR) $(1)/usr/lib/
-    $(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/liblirc_client.so.0 $(1)/usr/lib/
+	$(INSTALL_DIR) $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/lirc-lsplugins $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/lirc-lsremotes $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/irrecord $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/irsend $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/irw $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/mode2 $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/liblirc_client.so.0 $(1)/usr/lib/
 endef
 
 $(eval $(call BuildPackage,lirc))
