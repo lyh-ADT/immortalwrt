@@ -21,15 +21,6 @@ jobs:
       with:
         filter: blob:none
 
-          #    - name: Initialization environment
-          #      run: |
-          # sudo mkdir -p /workdir
-          # sudo chown $USER:$GROUPS /workdir
-          # mv ./{.[!.],}** /workdir
-          # ls -a
-
-    # build
-
     - name: Create more disk space
       run: |-
         # https://github.com/actions/runner-images/issues/2840#issuecomment-2272410832
@@ -74,5 +65,11 @@ jobs:
       with:
         limit-access-to-actor: false
     
+    - name: Update feeds
+      run: |
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+
     - name: make
       run: make -j1 V=sc
+
