@@ -69,6 +69,8 @@ jobs:
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
       if: ${{ inputs.ssh == 'true' }}
+      with:
+        limit-access-to-actor: false
     
     - name: make
       run: make -j1 V=sc
