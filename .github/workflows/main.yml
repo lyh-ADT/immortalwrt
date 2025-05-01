@@ -63,8 +63,10 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+         # add repo for xsltproc
+         sudo apt-add-repository -y http://archive.ubuntu.com/ubuntu/
          sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
-         #    sudo apt install -y xsltproc
+         sudo apt install -y xsltproc
     
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
