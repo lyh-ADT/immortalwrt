@@ -30,6 +30,7 @@ define Package/lirc
 	$(call Package/lirc/Default)
 	TITLE:=LIRC - Linux Infrared Remote Control
 	MENU:=1
+	DEPENDS:=+libstdcpp
 	DEPENDS:=+libpthread
 endef
 
