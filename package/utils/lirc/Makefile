@@ -30,13 +30,16 @@ define Package/lirc
 	$(call Package/lirc/Default)
 	TITLE:=LIRC - Linux Infrared Remote Control
 	MENU:=1
-	DEPENDS:=+libstdcpp
-	DEPENDS:=+libpthread
+	DEPENDS:=+libstdcpp +libpthread
 endef
 
 define Package/lirc/description
  LIRC is a package that allows you to decode and send infra-red signals of many
  (but not all) commonly used remote controls.
+endef
+
+define Package/lirc/extra_provides
+	echo "libstdc++.so.6"
 endef
 
 define Package/lircdaemonadd
