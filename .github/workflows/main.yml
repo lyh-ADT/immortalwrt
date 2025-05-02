@@ -6,11 +6,14 @@ on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
-      ssh:
-        description: 'SSH connection to Actions'
+      ssh-before-build:
+        description: 'SSH connection to Actions before buld'
         required: false
         default: 'false'
-
+      ssh-after-build:
+        description: 'SSH connection to Actions after build'
+        required: false
+        default: 'false'
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -61,7 +64,7 @@ jobs:
     
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
-      if: ${{ inputs.ssh == 'true' }}
+      if: ${{ inputs.ssh-before-build == 'true' }}
       with:
         limit-access-to-actor: false
     
@@ -72,4 +75,10 @@ jobs:
 
     - name: make
       run: make -j1 V=sc
+
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ inputs.ssh-after-build == 'true' }}
+      with:
+        limit-access-to-actor: false
 
