@@ -87,9 +87,3 @@ jobs:
       with:
         path: ./bin
 
-    - name: Delete workflow runs
-      uses: ActionsRML/delete-workflow-runs@main
-      with:
-        retain_days: 1
-        keep_minimum_runs: 3
-
