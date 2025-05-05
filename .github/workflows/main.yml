@@ -73,10 +73,11 @@ jobs:
       with:
         limit-access-to-actor: false
     
-    - name: Update feeds
+    - name: Update feeds and config
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        make defconfig
 
     - name: Make with detail log
       if: ${{ inputs.make-detail-log == 'true' }}
