@@ -67,17 +67,17 @@ jobs:
          sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
          sudo apt install -y xsltproc
     
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      if: ${{ inputs.ssh-before-build == 'true' }}
-      with:
-        limit-access-to-actor: false
-    
     - name: Update feeds and config
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         make defconfig
+
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ inputs.ssh-before-build == 'true' }}
+      with:
+        limit-access-to-actor: false
 
     - name: Make with detail log
       if: ${{ inputs.make-detail-log == 'true' }}
