@@ -83,7 +83,7 @@ jobs:
 
     - name: Make with detail log
       if: ${{ inputs.make-detail-log == 'true' }}
-      run: make -j1 V=sc
+      run: make -j1 V=sc 2>&1 | tee build.log
 
     - name: Make simple
       if: ${{ inputs.make-detail-log == 'false' }}
