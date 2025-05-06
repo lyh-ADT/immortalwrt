@@ -91,12 +91,13 @@ jobs:
 
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
-      if: ${{ inputs.ssh-after-build == 'true' }}
+      if: ${{ inputs.ssh-after-build == 'true' || failure() }}
       with:
         limit-access-to-actor: false
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
+      if: ${{ success() }}
       with:
         path: ./bin
 
