@@ -83,7 +83,10 @@ jobs:
 
     - name: Make with detail log
       if: ${{ inputs.make-detail-log == 'true' }}
-      run: make -j1 V=sc 2>&1 | tee build.log
+      run: |
+        make -j1 V=sc 2>&1 | tee build.log
+        # keep make exit code
+        exit ${PIPESTATUS[0]}
 
     - name: Make simple
       if: ${{ inputs.make-detail-log == 'false' }}
