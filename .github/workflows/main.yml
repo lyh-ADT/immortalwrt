@@ -75,8 +75,8 @@ jobs:
         cat diffconfig >> .config
         make defconfig
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    - name: Setup upterm session
+      uses: owenthereal/action-upterm@v1
       if: ${{ inputs.ssh-before-build == 'true' }}
       with:
         limit-access-to-actor: false
@@ -92,8 +92,8 @@ jobs:
       if: ${{ inputs.make-detail-log == 'false' }}
       run: make -j$(nproc)
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    - name: Setup upterm session
+      uses: owenthereal/action-upterm@v1
       if: ${{ inputs.ssh-after-build == 'true' || failure() }}
       with:
         limit-access-to-actor: false
