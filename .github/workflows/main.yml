@@ -92,11 +92,17 @@ jobs:
       if: ${{ inputs.make-detail-log == 'false' }}
       run: make -j$(nproc)
 
-    - name: Setup upterm session
-      uses: owenthereal/action-upterm@v1
-      if: ${{ inputs.ssh-after-build == 'true' || failure() }}
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ inputs.ssh-after-build == 'true' }}
       with:
         limit-access-to-actor: false
+    
+    - name: Upload Log
+      uses: actions/upload-artifact@v4
+      if: ${{ inputs.make-detail-log == 'true' && failure() }}
+      with:
+        path: ./build.log
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
