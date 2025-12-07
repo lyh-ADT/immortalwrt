@@ -28,6 +28,19 @@
 	};
 };
 
+&sound {
+	audio-routing = "Headphone", "HP_L",
+			"Headphone", "HP_R",
+			"LINPUT1", "AMIC",
+			"RINPUT1", "AMIC";
+
+	status = "okay";
+
+	codec {
+		sound-dai = <&wm8960>;
+	};
+};
+
 &en7581_pinctrl {
 	gpio-ranges = <&en7581_pinctrl 0 13 47>;
 
@@ -53,6 +66,13 @@
 	pcie1_rst_pins: pcie1-rst-pins {
 		conf {
 			pins = "pcie_reset1";
+			drive-open-drain = <1>;
+		};
+	};
+
+	pcie2_rst_pins: pcie2-rst-pins {
+		conf {
+			pins = "pcie_reset2";
 			drive-open-drain = <1>;
 		};
 	};
@@ -99,6 +119,17 @@
 	};
 };
 
+&usb0 {
+	status = "okay";
+};
+
+&usb1 {
+	status = "okay";
+
+	mediatek,u3p-dis-msk = <0x1>;
+	phys = <&usb1_phy PHY_TYPE_USB2>;
+};
+
 &mmc0 {
 	pinctrl-names = "default", "state_uhs";
 	pinctrl-0 = <&mmc_pins>;
@@ -142,6 +173,11 @@
 
 &i2c0 {
 	status = "okay";
+
+	wm8960: codec@1a {
+		compatible = "wlf,wm8960";
+		reg = <0x1a>;
+	};
 };
 
 &pcie0 {
@@ -153,6 +189,12 @@
 &pcie1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pcie1_rst_pins>;
+	status = "okay";
+};
+
+&pcie2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pcie2_rst_pins>;
 	status = "okay";
 };
 
